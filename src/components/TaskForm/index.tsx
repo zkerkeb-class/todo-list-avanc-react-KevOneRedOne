@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './taskForm.module.css';
 
 interface TaskFormProps {
+  id: number;
+  title: string;
+  completed: boolean;
   addTask: (task: string) => void;
 }
 
@@ -15,6 +18,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
       setTask('');
     }
   };
+
+  // stocker la valeur de l'input dans le state
+  // ajouter la tâche au state de la liste des tâches
+  // vider l'input
 
   return (
     <form onSubmit={handleSubmit}>
