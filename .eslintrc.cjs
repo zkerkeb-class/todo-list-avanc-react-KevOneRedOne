@@ -1,40 +1,41 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-        node: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true,
     },
-    extends: [
-        'airbnb',
-        'airbnb-typescript',
-        'airbnb/hooks',
-        'plugin:react/recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
     ],
-    overrides: [],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: './tsconfig.json',
-        ecmaFeatures: {
-            jsx: true,
-        },
+    semi: ['error', 'always'],
+  },
+  settings: {
+    react: {
+      version: 'detect',
     },
-    plugins: ['react', '@typescript-eslint', 'prettier'],
-    rules: {
-        'react/react-in-jsx-scope': 'off',
-        'prettier/prettier': [
-            'error',
-            {
-              endOfLine: 'auto',
-            },
-        ],
-    },
-    settings: {
-        react: {
-            version: 'detect',
-        },
-    },
+  },
 };

@@ -1,23 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "ES2022",
-        "lib": ["ES2023"],
-        "module": "ESNext",
-        "skipLibCheck": true,
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "isolatedModules": true,
-        "moduleDetection": "force",
-        "noEmit": true,
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
 
-        /* Linting */
-        "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        
-        /* Additional Options */
-        "esModuleInterop": true // Add this line
-    },
-    "include": ["vite.config.ts", "src/**/*"] // Include your source files
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Additional Options */
+    "esModuleInterop": true // Add this line
+  },
+  "include": ["vite.config.ts", "src/**/*"] // Include your source files
 }
