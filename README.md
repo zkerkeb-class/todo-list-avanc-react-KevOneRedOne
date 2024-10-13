@@ -99,8 +99,8 @@ my-todo-app/
 
 ## ESLint, Prettier and vsCode settings Configurations
 
-To maintain a clean codebase, the project uses ESLint, Prettier and the VsCode settings for linting. You can
-expand the configuration file to adjust rules:
+To maintain a clean codebase, the project uses ESLint, Prettier and the VsCode
+settings for linting. You can expand the configuration file to adjust rules:
 
 1. **Configuration in `.eslintrc.cjs`:**
 
@@ -145,7 +145,7 @@ expand the configuration file to adjust rules:
          version: 'detect',
        },
      },
-   }
+   };
    ```
 
 2. **Configuration in `.prettier.cjs`:**
@@ -168,26 +168,26 @@ expand the configuration file to adjust rules:
      requirePragma: false,
      vueIndentScriptAndStyle: false,
      embeddedLanguageFormatting: 'auto',
-   }
+   };
    ```
 
 3. **Configuration in vscode settings.json:**
    ```json
-    {
-      "editor.formatOnSave": false,
-      "editor.tabSize": 4,
-      "files.autoSave": "onFocusChange",
-      "javascript.validate.enable": false,
-      "eslint.enable": true,
-      "eslint.run": "onSave",
-      "prettier.requireConfig": true,
-      "prettier.singleQuote": true,
-      "prettier.trailingComma": "all",
-      "prettier.arrowParens": "avoid",
-      "prettier.printWidth": 80,
-      "eslint.validate": ["javascript", "typescript", "typescriptreact"],
-      "eslint.options": {
-        "configFile": ".eslintrc.cjs"
-      }
-    }
+   {
+     "editor.formatOnSave": false,
+     "editor.tabSize": 4,
+     "files.autoSave": "onFocusChange",
+     "javascript.validate.enable": false,
+     "eslint.enable": true,
+     "eslint.run": "onSave",
+     "prettier.requireConfig": true,
+     "prettier.singleQuote": true,
+     "prettier.trailingComma": "all",
+     "prettier.arrowParens": "avoid",
+     "prettier.printWidth": 80,
+     "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+     "eslint.options": {
+       "configFile": ".eslintrc.cjs"
+     }
+   }
    ```
