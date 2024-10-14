@@ -1,7 +1,14 @@
 import './Todolist.css';
 import React, { useState } from 'react';
 // import TaskForm from './components/TaskForm';
+
 import { Title } from './components/Title';
+import { Button } from './components/Button';
+import { TextInput } from './components/TextInput';
+
+import CheckIcon from './assets/icon/check.svg';
+import CrossIcon from './assets/icon/cross.svg';
+import DeleteIcon from './assets/icon/trash.svg';
 
 // export default TodoApp;
 
@@ -83,17 +90,19 @@ const TodoApp: React.FC = () => {
       ) : (
         ''
       )}
-      <input
+      <TextInput
         value={taskName}
         onChange={e => setTaskName(e.target.value)}
-        placeholder="Enter task"
+        placeholder="Add a task to do."
         onKeyDown={handleKeyDown}
       />
-      {/* disable button */}
-      <button disabled={taskName === null || taskName === ''} onClick={addTask}>
-        Add Task
-      </button>
-      {/* <button onClick={addTask}>Add Task</button> */}
+      <Button
+        onClick={addTask}
+        disabled={taskName === null || taskName === ''}
+        variant="text"
+      >
+        Do it.
+      </Button>
 
       <ul>
         {tasks.map(task => (
@@ -106,10 +115,16 @@ const TodoApp: React.FC = () => {
               {task.name}
               {task.completed ? ` - Completed on ${task.dateCompleted}` : ''}
             </span>
-            <button onClick={() => toggleTask(task.id)}>
-              {task.completed ? 'Undo' : 'Complete'}
-            </button>
-            <button onClick={() => removeTask(task.id)}>Delete</button>
+            <Button
+              onClick={() => toggleTask(task.id)}
+              icon={task.completed ? CrossIcon : CheckIcon}
+              variant="icon"
+            />
+            <Button
+              onClick={() => removeTask(task.id)}
+              icon={DeleteIcon}
+              variant="icon"
+            />
           </li>
         ))}
       </ul>

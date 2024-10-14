@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './taskForm.module.css';
+import './index.module.css';
 
 interface TaskFormProps {
   id: number;
@@ -29,7 +29,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
         type="text"
         value={task}
         onChange={e => setTask(e.target.value)}
-        placeholder="Add a new task to do"
+        placeholder="Add a new task to do."
       />
       <button type="submit">Do it.</button>
     </form>

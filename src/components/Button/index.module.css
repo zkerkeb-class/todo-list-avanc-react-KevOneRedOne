@@ -1,0 +1,40 @@
+.textButton {
+  background-color: #ffffff;
+  color: black;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 0 30px 30px 0;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  gap: 8px;
+}
+
+.textButton:hover {
+  background-color: #062e3f;
+  color: #ffffff;
+}
+
+.iconButton {
+  background-color: #394046;
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+}
+
+.iconButton svg,
+.iconButton .icon {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
