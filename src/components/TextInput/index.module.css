@@ -1,0 +1,17 @@
+.input {
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  flex-grow: 1;
+  border-radius: 30px 0 0 30px;
+  background-color: #1a1a1a;
+  color: #d3d3d3;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.input::placeholder {
+  color: #a9a9a9;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
