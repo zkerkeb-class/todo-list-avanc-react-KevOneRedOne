@@ -89,12 +89,6 @@ const TodoApp: React.FC = () => {
   return (
     <div>
       <Title title="Just do it !" level="h1" />
-      {/* {taskName === null || (taskName === '' && tasks.length === 0) ? (
-        <Title title='Enter your first task to do !' level='h4' />
-      ) : (tasks.length > 0) ? (
-        <Title title={`You have ${tasks.length} tasks to do !`} level="h3" />
-      ): null} */}
-      {/* <Title title={`You have ${tasks.length} tasks to do !`} level="h3" /> */}
       <br />
       <TextInput
         value={taskName}
@@ -111,7 +105,6 @@ const TodoApp: React.FC = () => {
       </Button>
       <br />
       <br />
-      {/* afficher la date - nombre de tache à faire dans la journée */}
       <p>
         {new Date().toLocaleString([], {
           hour: '2-digit',
