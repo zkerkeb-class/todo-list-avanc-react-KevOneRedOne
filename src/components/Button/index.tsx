@@ -7,6 +7,8 @@ interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   variant?: 'text' | 'icon';
+  type?: 'button' | 'submit' | 'reset';
+  deleteButton?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -15,8 +17,13 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   icon,
   variant = 'text',
+  deleteButton,
 }) => {
-  const className = variant === 'icon' ? styles.iconButton : styles.textButton;
+  let className = variant === 'icon' ? styles.iconButton : styles.textButton;
+
+  if (deleteButton) {
+    className = `${className} ${styles.deleteButton}`;
+  }
 
   return (
     <button className={className} onClick={onClick} disabled={disabled}>

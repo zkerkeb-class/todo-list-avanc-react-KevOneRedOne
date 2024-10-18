@@ -1,5 +1,5 @@
 .textButton {
-  background-color: #ffffff;
+  background-color: #ebebeb;
   color: black;
   font-family: 'Quicksand', sans-serif;
   border-radius: 0 30px 30px 0;
@@ -17,12 +17,18 @@
   color: #ffffff;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .iconButton {
   background-color: #394046;
   border-radius: 50%;
   padding: 10px;
   width: 40px;
   height: 40px;
+  margin: 5px;
   cursor: pointer;
   border: none;
 }
@@ -34,7 +40,10 @@
   fill: white;
 }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.iconButton:hover {
+  background-color: #062e3f;
+}
+
+.deleteButton:hover {
+  background-color: #690000;
 }

@@ -115,16 +115,19 @@ const TodoApp: React.FC = () => {
               {task.name}
               {task.completed ? ` - Completed on ${task.dateCompleted}` : ''}
             </span>
-            <Button
-              onClick={() => toggleTask(task.id)}
-              icon={task.completed ? CrossIcon : CheckIcon}
-              variant="icon"
-            />
-            <Button
-              onClick={() => removeTask(task.id)}
-              icon={DeleteIcon}
-              variant="icon"
-            />
+            <div>
+              <Button
+                onClick={() => toggleTask(task.id)}
+                icon={task.completed ? CrossIcon : CheckIcon}
+                variant="icon"
+              />
+              <Button
+                onClick={() => removeTask(task.id)}
+                icon={DeleteIcon}
+                variant="icon"
+                deleteButton={true}
+              />
+            </div>
           </li>
         ))}
       </ul>
