@@ -73,6 +73,10 @@ const TodoApp: React.FC = () => {
     }
   };
 
+  const clearAllTasks = () => {
+    setTasks([]);
+  };
+
   React.useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     setTasks(tasks);
@@ -85,11 +89,13 @@ const TodoApp: React.FC = () => {
   return (
     <div>
       <Title title="Just do it !" level="h1" />
-      {taskName === null || (taskName === '' && tasks.length === 0) ? (
-        <p>Enter your first task to do !</p>
-      ) : (
-        ''
-      )}
+      {/* {taskName === null || (taskName === '' && tasks.length === 0) ? (
+        <Title title='Enter your first task to do !' level='h4' />
+      ) : (tasks.length > 0) ? (
+        <Title title={`You have ${tasks.length} tasks to do !`} level="h3" />
+      ): null} */}
+      {/* <Title title={`You have ${tasks.length} tasks to do !`} level="h3" /> */}
+      <br />
       <TextInput
         value={taskName}
         onChange={e => setTaskName(e.target.value)}
@@ -103,34 +109,56 @@ const TodoApp: React.FC = () => {
       >
         Do it.
       </Button>
+      <br />
+      <br />
+      {/* afficher la date - nombre de tache à faire dans la journée */}
+      <p>
+        {new Date().toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        })}
+      </p>
+      {tasks.length > 0 && (
+        <>
+          <p>
+            {tasks.length} tasks to do today -{' '}
+            <button onClick={clearAllTasks}>Clear All Tasks</button>
+          </p>
 
-      <ul>
-        {tasks.map(task => (
-          <li key={task.id}>
-            <span
-              style={{
-                textDecoration: task.completed ? 'line-through' : 'none',
-              }}
-            >
-              {task.name}
-              {task.completed ? ` - Completed on ${task.dateCompleted}` : ''}
-            </span>
-            <div>
-              <Button
-                onClick={() => toggleTask(task.id)}
-                icon={task.completed ? CrossIcon : CheckIcon}
-                variant="icon"
-              />
-              <Button
-                onClick={() => removeTask(task.id)}
-                icon={DeleteIcon}
-                variant="icon"
-                deleteButton={true}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
+          <ul>
+            {tasks.map(task => (
+              <li key={task.id}>
+                <span
+                  style={{
+                    textDecoration: task.completed ? 'line-through' : 'none',
+                  }}
+                >
+                  {task.name}
+                  {task.completed
+                    ? ` - Completed on ${task.dateCompleted}`
+                    : ''}
+                </span>
+                <div>
+                  <Button
+                    onClick={() => toggleTask(task.id)}
+                    icon={task.completed ? CrossIcon : CheckIcon}
+                    variant="icon"
+                  />
+                  <Button
+                    onClick={() => removeTask(task.id)}
+                    icon={DeleteIcon}
+                    variant="icon"
+                    deleteButton={true}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
