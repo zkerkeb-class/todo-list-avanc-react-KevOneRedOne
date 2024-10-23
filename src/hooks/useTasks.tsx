@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Task } from '../types';
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [filterTasks, setFilterTasks] = useState<
+    'all' | 'completed' | 'incomplete'
+  >('all');
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
@@ -24,6 +27,17 @@ export const useTasks = () => {
       setTasks(prevTasks => [...prevTasks, newTask]);
     }
   };
+
+  const filteredTasks = useMemo(() => {
+    switch (filterTasks) {
+      case 'completed':
+        return tasks.filter(task => task.completed);
+      case 'incomplete':
+        return tasks.filter(task => !task.completed);
+      default:
+        return tasks;
+    }
+  }, [tasks, filterTasks]);
 
   const removeTask = (id: number) => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
@@ -48,10 +62,11 @@ export const useTasks = () => {
   };
 
   return {
-    tasks,
+    tasks: filteredTasks,
     addTask,
     removeTask,
     toggleTask,
     clearAllTasks,
+    setFilterTasks,
   };
 };
