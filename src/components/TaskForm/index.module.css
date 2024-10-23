@@ -1,13 +1,14 @@
-form {
+.formContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
-form input {
+.formContainer input {
   border: none;
   padding: 12px;
   font-size: 16px;
@@ -19,13 +20,13 @@ form input {
   transition: background-color 0.3s ease;
 }
 
-form input::placeholder {
+.formContainer input::placeholder {
   color: #a9a9a9;
   font-family: 'Quicksand', sans-serif;
   font-weight: 300;
 }
 
-form button {
+.formContainer button {
   padding: 12px 24px;
   font-size: 16px;
   font-family: 'Quicksand', sans-serif;
@@ -38,11 +39,11 @@ form button {
   transition: background-color 0.3s ease;
 }
 
-form button:hover {
+.formContainer button:hover {
   background-color: #062e3f;
   color: #ffffff;
 }
 
-form input:hover {
+.formContainer input:hover {
   background-color: #111;
 }

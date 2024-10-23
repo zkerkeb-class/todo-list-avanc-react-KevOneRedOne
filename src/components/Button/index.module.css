@@ -1,4 +1,4 @@
-.textButton {
+.textButtonPrimary {
   background-color: #ebebeb;
   color: black;
   font-family: 'Quicksand', sans-serif;
@@ -12,9 +12,39 @@
   gap: 8px;
 }
 
-.textButton:hover {
+.textButtonPrimary:hover {
   background-color: #062e3f;
   color: #ffffff;
+}
+
+.textButtonPrimary:disabled {
+  background-color: #ebebeb;
+  color: #a9a9a9;
+  cursor: not-allowed;
+}
+
+.textButtonSecondary {
+  background-color: #ebebeb;
+  color: rgb(0, 0, 0);
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 30px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.textButtonSecondary:hover {
+  background-color: #062e3f;
+  color: #ffffff;
+}
+
+.textButtonSecondary:disabled {
+  background-color: #ebebeb;
+  color: #a9a9a9;
+  cursor: not-allowed;
 }
 
 button:disabled {

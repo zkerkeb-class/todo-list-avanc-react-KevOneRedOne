@@ -5,14 +5,12 @@ interface TextInputProps {
   value: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
   value,
   onChange,
   placeholder,
-  onKeyDown,
 }) => {
   return (
     <input
@@ -21,7 +19,6 @@ export const TextInput: React.FC<TextInputProps> = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      onKeyDown={onKeyDown}
     />
   );
 };

@@ -1,4 +1,4 @@
-// import styles from './index.module.css';
+import styles from './index.module.css';
 import React from 'react';
 
 export const CurrentDate: React.FC = () => {
@@ -10,5 +10,5 @@ export const CurrentDate: React.FC = () => {
     day: '2-digit',
   });
 
-  return <p>{formattedDate}</p>;
+  return <p className={styles.currentDateText}>{formattedDate}</p>;
 };

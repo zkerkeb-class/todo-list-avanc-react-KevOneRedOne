@@ -30,7 +30,9 @@ export const TaskList: React.FC<TaskListProps> = ({
         <>
           <p>
             {tasks.length} tasks to do today -{' '}
-            <button onClick={clearAllTasks}>Clear All Tasks</button>
+            <Button onClick={clearAllTasks} variant="text-secondary">
+              Clear All Tasks
+            </Button>
           </p>
           <ul>
             {tasks.map(task => (

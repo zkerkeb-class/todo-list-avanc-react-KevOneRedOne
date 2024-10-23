@@ -1,23 +1,15 @@
 import './Todolist.css';
 import React, { useState } from 'react';
+import { Task } from './types';
 import { Title } from './components/Title';
-import { Button } from './components/Button';
-import { TextInput } from './components/TextInput';
 import { TaskList } from './components/TaskList';
 import { CurrentDate } from './components/CurrentDate';
-
-type Task = {
-  id: number;
-  name: string;
-  dateCompleted: Date | string;
-  completed: boolean;
-};
+import { TaskForm } from './components/TaskForm';
 
 const TodoApp: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [taskName, setTaskName] = useState('');
 
-  const addTask = () => {
+  const addTask = (taskName: string) => {
     if (taskName.trim()) {
       const newTask = {
         id: Date.now(),
@@ -25,18 +17,17 @@ const TodoApp: React.FC = () => {
         dateCompleted: '',
         completed: false,
       };
-      setTasks([...tasks, newTask]);
-      setTaskName('');
+      setTasks(prevTasks => [...prevTasks, newTask]);
     }
   };
 
   const removeTask = (id: number) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
   };
 
   const toggleTask = (id: number) => {
-    setTasks(
-      tasks.map(task =>
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
         task.id === id
           ? {
               ...task,
@@ -46,12 +37,6 @@ const TodoApp: React.FC = () => {
           : task
       )
     );
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      addTask();
-    }
   };
 
   const clearAllTasks = () => {
@@ -70,19 +55,7 @@ const TodoApp: React.FC = () => {
   return (
     <>
       <Title title="Just do it !" level="h1" />
-      <TextInput
-        value={taskName}
-        onChange={e => setTaskName(e.target.value)}
-        placeholder="Add a task to do."
-        onKeyDown={handleKeyDown}
-      />
-      <Button
-        onClick={addTask}
-        disabled={taskName.trim() === ''}
-        variant="text"
-      >
-        Do it.
-      </Button>
+      <TaskForm onAddTask={addTask} />
       <CurrentDate />
       <TaskList
         tasks={tasks}

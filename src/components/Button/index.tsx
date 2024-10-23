@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './index.module.css';
 
 interface ButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  variant?: 'text' | 'icon';
+  variant?: 'text-primary' | 'text-secondary' | 'icon';
   type?: 'button' | 'submit' | 'reset';
   deleteButton?: boolean;
 }
@@ -16,10 +16,15 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   children,
   icon,
-  variant = 'text',
+  variant = 'text-primary',
   deleteButton,
 }) => {
-  let className = variant === 'icon' ? styles.iconButton : styles.textButton;
+  let className =
+    variant === 'icon'
+      ? styles.iconButton
+      : variant === 'text-secondary'
+        ? styles.textButtonSecondary
+        : styles.textButtonPrimary;
 
   if (deleteButton) {
     className = `${className} ${styles.deleteButton}`;

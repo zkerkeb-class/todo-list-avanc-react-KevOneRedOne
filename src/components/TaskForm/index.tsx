@@ -1,39 +1,37 @@
 import React, { useState } from 'react';
-import './index.module.css';
+import { Button } from '../../components/Button';
+import { TextInput } from '../../components/TextInput';
+import styles from './index.module.css';
 
 interface TaskFormProps {
-  id: number;
-  title: string;
-  completed: boolean;
-  addTask: (task: string) => void;
+  onAddTask: (taskName: string) => void;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
-  const [task, setTask] = useState('');
+export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
+  const [taskName, setTaskName] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (task.trim()) {
-      addTask(task);
-      setTask('');
+    if (taskName.trim()) {
+      onAddTask(taskName);
+      setTaskName('');
     }
   };
 
-  // stocker la valeur de l'input dans le state
-  // ajouter la tâche au state de la liste des tâches
-  // vider l'input
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={task}
-        onChange={e => setTask(e.target.value)}
-        placeholder="Add a new task to do."
+    <form className={styles.formContainer} onSubmit={handleAddTask}>
+      <TextInput
+        value={taskName}
+        onChange={e => setTaskName(e.target.value)}
+        placeholder="Add a task to do."
       />
-      <button type="submit">Do it.</button>
+      <Button
+        type="submit"
+        disabled={taskName.trim() === ''}
+        variant="text-primary"
+      >
+        Do it.
+      </Button>
     </form>
   );
 };
-
-export default TaskForm;
