@@ -1,29 +1,10 @@
 import './Todolist.css';
 import React, { useState } from 'react';
-// import TaskForm from './components/TaskForm';
-
 import { Title } from './components/Title';
 import { Button } from './components/Button';
 import { TextInput } from './components/TextInput';
-
-import CheckIcon from './assets/icon/check.svg';
-import CrossIcon from './assets/icon/cross.svg';
-import DeleteIcon from './assets/icon/trash.svg';
-
-// export default TodoApp;
-
-// setp 1 : create a task form
-// step 2 : create a task list
-// step 3 : create a task item
-// step 4 : create a task item list
-// step 5 : create a task item list container
-
-// use use Memo to avoid re-rendering of the task list
-// use use callback to avoid re-rendering of the task item list container
-
-// use use context to avoid prop drilling
-
-// persist the task list in the local storage with use effect
+import { TaskList } from './components/TaskList';
+import { CurrentDate } from './components/CurrentDate';
 
 type Task = {
   id: number;
@@ -87,9 +68,8 @@ const TodoApp: React.FC = () => {
   }, [tasks]);
 
   return (
-    <div>
+    <>
       <Title title="Just do it !" level="h1" />
-      <br />
       <TextInput
         value={taskName}
         onChange={e => setTaskName(e.target.value)}
@@ -98,61 +78,19 @@ const TodoApp: React.FC = () => {
       />
       <Button
         onClick={addTask}
-        disabled={taskName === null || taskName === ''}
+        disabled={taskName.trim() === ''}
         variant="text"
       >
         Do it.
       </Button>
-      <br />
-      <br />
-      <p>
-        {new Date().toLocaleString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        })}
-      </p>
-      {tasks.length > 0 && (
-        <>
-          <p>
-            {tasks.length} tasks to do today -{' '}
-            <button onClick={clearAllTasks}>Clear All Tasks</button>
-          </p>
-
-          <ul>
-            {tasks.map(task => (
-              <li key={task.id}>
-                <span
-                  style={{
-                    textDecoration: task.completed ? 'line-through' : 'none',
-                  }}
-                >
-                  {task.name}
-                  {task.completed
-                    ? ` - Completed on ${task.dateCompleted}`
-                    : ''}
-                </span>
-                <div>
-                  <Button
-                    onClick={() => toggleTask(task.id)}
-                    icon={task.completed ? CrossIcon : CheckIcon}
-                    variant="icon"
-                  />
-                  <Button
-                    onClick={() => removeTask(task.id)}
-                    icon={DeleteIcon}
-                    variant="icon"
-                    deleteButton={true}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
+      <CurrentDate />
+      <TaskList
+        tasks={tasks}
+        toggleTask={toggleTask}
+        removeTask={removeTask}
+        clearAllTasks={clearAllTasks}
+      />
+    </>
   );
 };
 

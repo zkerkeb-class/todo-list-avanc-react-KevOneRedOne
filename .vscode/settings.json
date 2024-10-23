@@ -9,7 +9,7 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "avoid",
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 100,
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   "eslint.options": {
     "configFile": ".eslintrc.cjs"

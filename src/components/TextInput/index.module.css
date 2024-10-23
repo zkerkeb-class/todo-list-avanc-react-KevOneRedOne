@@ -9,6 +9,7 @@
   color: #d3d3d3;
   outline: none;
   transition: background-color 0.3s ease;
+  margin-bottom: 2rem;
 }
 
 .input::placeholder {
