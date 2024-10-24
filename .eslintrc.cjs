@@ -13,7 +13,14 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Apply to TypeScript files
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',

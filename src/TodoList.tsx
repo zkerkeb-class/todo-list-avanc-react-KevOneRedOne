@@ -14,6 +14,8 @@ const TodoApp: React.FC = () => {
     toggleTask,
     clearAllTasks,
     setFilterTasks,
+    hasPendingTasks,
+    isTaskListEmpty,
   } = useTasks();
 
   return (
@@ -21,16 +23,14 @@ const TodoApp: React.FC = () => {
       <Title title="Just do it !" level="h1" />
       <TaskForm onAddTask={addTask} />
       <CurrentDate />
-      <div className="div">
-        <button onClick={() => setFilterTasks('all')}>All</button>
-        <button onClick={() => setFilterTasks('completed')}>Completed</button>
-        <button onClick={() => setFilterTasks('incomplete')}>Incomplete</button>
-      </div>
       <TaskList
         tasks={tasks}
         toggleTask={toggleTask}
         removeTask={removeTask}
         clearAllTasks={clearAllTasks}
+        setFilterTasks={setFilterTasks}
+        hasPendingTasks={hasPendingTasks}
+        isTaskListEmpty={isTaskListEmpty}
       />
     </>
   );

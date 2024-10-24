@@ -57,6 +57,12 @@ export const useTasks = () => {
     );
   };
 
+  const isTaskListEmpty = useMemo(() => {
+    return tasks.length === 0;
+  }, [filteredTasks]);
+
+  const hasPendingTasks = tasks.some(task => !task.completed);
+
   const clearAllTasks = () => {
     setTasks([]);
   };
@@ -68,5 +74,7 @@ export const useTasks = () => {
     toggleTask,
     clearAllTasks,
     setFilterTasks,
+    hasPendingTasks,
+    isTaskListEmpty,
   };
 };

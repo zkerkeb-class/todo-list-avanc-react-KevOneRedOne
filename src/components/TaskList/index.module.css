@@ -1,0 +1,25 @@
+.taskSection {
+  width: 100%;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.taskHeaderActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .taskList {
+}
+
+.taskItem {
+}
+
+.taskActions {
+} */

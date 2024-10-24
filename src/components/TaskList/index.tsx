@@ -1,70 +1,96 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import styles from './index.module.css';
+import { Task } from '../../types';
 import { Button } from '../Button';
+import { TaskFilter } from '../TaskFilter';
+import Clear from '../../assets/icon/clear.svg';
 import CheckIcon from '../../assets/icon/check.svg';
 import CrossIcon from '../../assets/icon/cross.svg';
 import DeleteIcon from '../../assets/icon/trash.svg';
 
-type Task = {
-  id: number;
-  name: string;
-  dateCompleted: Date | string;
-  completed: boolean;
-};
-
 type TaskListProps = {
   tasks: Task[];
+  clearAllTasks: () => void;
   toggleTask: (id: number) => void;
   removeTask: (id: number) => void;
-  clearAllTasks: () => void;
+  setFilterTasks: (filter: 'all' | 'completed' | 'incomplete') => void;
+  hasPendingTasks: boolean;
+  isTaskListEmpty: boolean;
 };
 
-export const TaskList: React.FC<TaskListProps> = ({
-  tasks,
-  toggleTask,
-  removeTask,
-  clearAllTasks,
-}) => {
-  return (
-    <>
-      {tasks.length > 0 && (
-        <>
-          <p>
-            {tasks.length} tasks to do today -{' '}
-            <Button onClick={clearAllTasks} variant="text-secondary">
-              Clear All Tasks
-            </Button>
-          </p>
-          <ul>
-            {tasks.map(task => (
-              <li key={task.id}>
-                <span
-                  style={{
-                    textDecoration: task.completed ? 'line-through' : 'none',
-                  }}
-                >
-                  {task.name}
-                  {task.completed
-                    ? ` - Completed on ${task.dateCompleted}`
-                    : ''}
-                </span>
-                <div>
-                  <Button
-                    onClick={() => toggleTask(task.id)}
-                    icon={task.completed ? CrossIcon : CheckIcon}
-                    variant="icon"
-                  />
-                  <Button
-                    onClick={() => removeTask(task.id)}
-                    icon={DeleteIcon}
-                    variant="icon"
-                    deleteButton={true}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </>
-  );
-};
+// Disable prop-types validation for this file
+/* eslint-disable react/prop-types */
+
+export const TaskList: React.FC<TaskListProps> = React.memo(
+  ({
+    tasks,
+    clearAllTasks,
+    toggleTask,
+    removeTask,
+    setFilterTasks,
+    hasPendingTasks,
+    isTaskListEmpty,
+  }) => {
+    const tasksStatus = useMemo(
+      () => (hasPendingTasks ? 'to do' : 'done'),
+      [hasPendingTasks]
+    );
+
+    return (
+      <>
+        {tasks.length > 0 && (
+          <div className={styles.taskSection}>
+            <div className={styles.taskHeader}>
+              <h3>
+                {tasks.length} tasks {tasksStatus} today
+              </h3>
+              <div className={styles.taskHeaderActions}>
+                <TaskFilter
+                  setFilterTasks={setFilterTasks}
+                  isTaskListEmpty={isTaskListEmpty}
+                />
+                <Button
+                  onClick={clearAllTasks}
+                  variant="icon"
+                  icon={Clear}
+                  deleteButton={true}
+                />
+              </div>
+            </div>
+            <ul className={styles.taskList}>
+              {tasks.map(task => (
+                <li key={task.id} className={styles.taskItem}>
+                  <span
+                    style={{
+                      textDecoration: task.completed ? 'line-through' : 'none',
+                    }}
+                  >
+                    {task.name}
+                    {task.completed
+                      ? ` - Completed on ${task.dateCompleted}`
+                      : ''}
+                  </span>
+                  <div className={styles.taskActions}>
+                    <Button
+                      onClick={() => toggleTask(task.id)}
+                      icon={task.completed ? CrossIcon : CheckIcon}
+                      variant="icon"
+                    />
+                    <Button
+                      onClick={() => removeTask(task.id)}
+                      icon={DeleteIcon}
+                      variant="icon"
+                      deleteButton={true}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </>
+    );
+  }
+);
+
+TaskList.displayName = 'TaskList';
