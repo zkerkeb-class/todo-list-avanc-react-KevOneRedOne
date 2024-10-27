@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Task } from '../types';
 
 export const useTasks = () => {
@@ -16,7 +16,7 @@ export const useTasks = () => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (taskName: string) => {
+  const addTask = useCallback((taskName: string) => {
     if (taskName.trim()) {
       const newTask = {
         id: Date.now(),
@@ -26,7 +26,29 @@ export const useTasks = () => {
       };
       setTasks(prevTasks => [...prevTasks, newTask]);
     }
-  };
+  }, []);
+
+  const removeTask = useCallback((id: number) => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+  }, []);
+
+  const toggleTask = useCallback((id: number) => {
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === id
+          ? {
+              ...task,
+              completed: !task.completed,
+              dateCompleted: task.completed ? '' : new Date().toLocaleString(),
+            }
+          : task
+      )
+    );
+  }, []);
+
+  const clearAllTasks = useCallback(() => {
+    setTasks([]);
+  }, []);
 
   const filteredTasks = useMemo(() => {
     switch (filterTasks) {
@@ -39,33 +61,21 @@ export const useTasks = () => {
     }
   }, [tasks, filterTasks]);
 
-  const removeTask = (id: number) => {
-    setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
-  };
-
-  const toggleTask = (id: number) => {
-    setTasks(prevTasks =>
-      prevTasks.map(task =>
-        task.id === id
-          ? {
-              ...task,
-              completed: !task.completed,
-              dateCompleted: task.completed ? '' : new Date().toLocaleString(),
-            }
-          : task
-      )
-    );
-  };
-
   const isTaskListEmpty = useMemo(() => {
     return tasks.length === 0;
   }, [filteredTasks]);
 
-  const hasPendingTasks = tasks.some(task => !task.completed);
+  const hasPendingTasks = useMemo(
+    () => tasks.some(task => !task.completed),
+    [tasks]
+  );
 
-  const clearAllTasks = () => {
-    setTasks([]);
-  };
+  const setFilter = useCallback(
+    (filter: 'all' | 'completed' | 'incomplete') => {
+      setFilterTasks(filter);
+    },
+    []
+  );
 
   return {
     tasks: filteredTasks,
@@ -73,7 +83,7 @@ export const useTasks = () => {
     removeTask,
     toggleTask,
     clearAllTasks,
-    setFilterTasks,
+    setFilterTasks: setFilter,
     hasPendingTasks,
     isTaskListEmpty,
   };
