@@ -5,6 +5,7 @@ import { Title } from './components/Title';
 import { TaskList } from './components/TaskList';
 import { CurrentDate } from './components/CurrentDate';
 import { TaskForm } from './components/TaskForm';
+import { TasksProvider } from './context/tasksContext';
 
 const TodoApp: React.FC = () => {
   const {
@@ -19,7 +20,7 @@ const TodoApp: React.FC = () => {
   } = useTasks();
 
   return (
-    <>
+    <TasksProvider>
       <Title title="Just do it !" level="h1" />
       <TaskForm onAddTask={addTask} />
       <CurrentDate />
@@ -32,7 +33,7 @@ const TodoApp: React.FC = () => {
         hasPendingTasks={hasPendingTasks}
         isTaskListEmpty={isTaskListEmpty}
       />
-    </>
+    </TasksProvider>
   );
 };
 

@@ -16,17 +16,29 @@ export const TaskFilter: React.FC<TaskFilterProps> = ({
   } else {
     return (
       <div className={styles.selectContainer}>
-        <img className={styles.selectIcon} src={FilterIcon} alt="filter-icon" />
-        <select
-          className={styles.selectSection}
-          onChange={e =>
-            setFilterTasks(e.target.value as 'all' | 'completed' | 'incomplete')
-          }
-        >
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="incomplete">Incomplete</option>
-        </select>
+        {isTaskListEmpty ? (
+          <p>No tasks available</p>
+        ) : (
+          <>
+            <img
+              className={styles.selectIcon}
+              src={FilterIcon}
+              alt="filter-icon"
+            />
+            <select
+              className={styles.selectSection}
+              onChange={e =>
+                setFilterTasks(
+                  e.target.value as 'all' | 'completed' | 'incomplete'
+                )
+              }
+            >
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="incomplete">Incomplete</option>
+            </select>
+          </>
+        )}
       </div>
     );
   }

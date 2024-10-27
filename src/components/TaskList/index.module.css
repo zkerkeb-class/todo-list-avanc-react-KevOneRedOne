@@ -5,8 +5,12 @@
 .taskHeader {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 5px;
+}
+
+.taskHeaderSubTitle {
+  margin-left: 20px;
 }
 
 .taskHeaderActions {
@@ -14,12 +18,3 @@
   align-items: center;
   justify-content: space-between;
 }
-
-/* .taskList {
-}
-
-.taskItem {
-}
-
-.taskActions {
-} */
