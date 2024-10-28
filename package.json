@@ -15,7 +15,9 @@
     "lint:fix": "eslint --fix",
     "lint": "eslint .",
     "deploy": "gh-pages -d dist",
-    "type:check": "tsc --noEmit"
+    "dev:cache": "vite --force",
+    "type:check": "tsc --noEmit",
+    "type:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "react": "^18.3.1",
