@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/Button';
 import { TextInput } from '../../components/TextInput';
+import { useTasksContext } from '../../context/tasksContext';
 import styles from './index.module.css';
 
-interface TaskFormProps {
-  onAddTask: (taskName: string) => void;
-}
-
-export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
+export const TaskForm: React.FC = () => {
   const [taskName, setTaskName] = useState('');
+  const { addTask } = useTasksContext();
 
   const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (taskName.trim()) {
-      onAddTask(taskName);
+      addTask(taskName);
       setTaskName('');
     }
   };

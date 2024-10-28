@@ -1,16 +1,11 @@
 import React from 'react';
 import styles from './index.module.css';
 import FilterIcon from '../../assets/icon/filter.svg';
+import { useTasksContext } from '../../context/tasksContext';
 
-interface TaskFilterProps {
-  setFilterTasks: (filter: 'all' | 'completed' | 'incomplete') => void;
-  isTaskListEmpty: boolean;
-}
+export const TaskFilter: React.FC = () => {
+  const { setFilterTasks, isTaskListEmpty } = useTasksContext();
 
-export const TaskFilter: React.FC<TaskFilterProps> = ({
-  setFilterTasks,
-  isTaskListEmpty,
-}) => {
   if (isTaskListEmpty) {
     return null;
   } else {
