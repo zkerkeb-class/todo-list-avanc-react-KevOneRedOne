@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://github.com/KevOneRedOne/Simplistic-todo-list-vite",
+  "homepage": "https://github.com/zkerkeb-class/todo-list-avanc-react-KevOneRedOne",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
